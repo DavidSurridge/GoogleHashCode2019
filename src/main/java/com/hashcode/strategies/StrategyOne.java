@@ -23,7 +23,7 @@ public final class StrategyOne {
     private Long bestScore = 0l;
     private BestScorePosition bestScorePosition = new BestScorePosition();
 
-    public void runStrategy(List<Photo> photos) {
+    public SlideShow runStrategy(List<Photo> photos) {
         int i = 0;
 
         for (Photo photo : photos) {
@@ -61,6 +61,8 @@ public final class StrategyOne {
             slideShow.addSlide(slides.get(localMaximumIndex));
             availableSlides.remove(localMaximumIndex);
         }
+
+        return slideShow;
     }
 
     private void calculateScorePairs() {
