@@ -32,11 +32,11 @@ public class InputLoader {
     private void parseFileContentToPayload(File file) {
         try {
             final List<String> content = FileUtils.readLines(file);
-            final List<Photo> listOfPhotos = new LinkedList<>();
-
             content.remove(0);
+            final List<Photo> listOfPhotos = new LinkedList<>();
+            long i = 0;
 
-            content.forEach(line -> {
+            for (String line : content) {
                 List<String> lineValues = Arrays.asList(line.split(" "));
                 String orientation = lineValues.get(0);
                 Integer numberOfTags = Integer.parseInt(lineValues.get(1));
@@ -44,13 +44,15 @@ public class InputLoader {
                 List<String> strings = lineValues.subList(2, lineValues.size());
 
                 Photo photo = Photo.builder()
+                        .id(i)
                         .orientation(orientation)
                         .numberOfTags(numberOfTags)
                         .tags(strings)
                         .build();
 
                 listOfPhotos.add(photo);
-            });
+                i++;
+            }
 
             System.out.println(listOfPhotos);
 

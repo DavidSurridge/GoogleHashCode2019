@@ -11,6 +11,7 @@ import java.util.List;
 @ToString
 public final class Photo {
 
+   private Long id;
    private String orientation;
    private Integer numberOfTags;
    private List<String> tags;
