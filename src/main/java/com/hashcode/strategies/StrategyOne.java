@@ -16,6 +16,7 @@ public final class StrategyOne {
 
     private List<Slide> slides = new ArrayList<>();
     private SlideShow slideShow = new SlideShow();
+    private Integer lastSlideIndex = 0;
 
     private Set<Integer> availableSlides = new HashSet<>();
     private Long[][] scores = new Long[0][0];
@@ -40,6 +41,26 @@ public final class StrategyOne {
         slideShow.addSlide(slides.get(bestScorePosition.i));
         slideShow.addSlide(slides.get(bestScorePosition.j));
         availableSlides.remove(bestScorePosition.i);
+        availableSlides.remove(bestScorePosition.j);
+        lastSlideIndex = bestScorePosition.j;
+
+        while (availableSlides.size() > 0) {
+            long localMaximumScore = 0;
+            int localMaximumIndex = -1;
+
+            for (Integer index : availableSlides) {
+                final Long score = scores[lastSlideIndex][index];
+                if (score > localMaximumScore) {
+                    localMaximumScore = score;
+                    localMaximumIndex = index;
+                } else if (localMaximumIndex == -1) {
+                    localMaximumIndex = index;
+                }
+            }
+
+            slideShow.addSlide(slides.get(localMaximumIndex));
+            availableSlides.remove(localMaximumIndex);
+        }
     }
 
     private void calculateScorePairs() {

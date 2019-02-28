@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public final class SlideShow {
 
-    List slides = new ArrayList<Slide>();
+    private List slides = new ArrayList<Slide>();
 
     public void addSlide(Slide slide) {
         this.slides.add(slide);
