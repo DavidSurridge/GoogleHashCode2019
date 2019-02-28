@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,10 +13,9 @@ import java.util.Set;
 @Builder
 public final class Slide {
 
-
-
     List allphotos = new ArrayList<Photo>();
     Set<String> hSet;
+
     public void addPhoto(Photo photo) {
         this.allphotos.add(photo);
         hSet = new HashSet<>(photo.getTags());
