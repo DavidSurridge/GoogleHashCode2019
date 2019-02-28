@@ -1,21 +1,20 @@
 package com.hashcode.model;
 
-import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
-
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import lombok.Data;
 @Data
-@Builder
+@NoArgsConstructor
 public final class Slide {
 
-    List allphotos;
+    List<Photo> allphotos = new ArrayList();
 
-    Set<String> hSet;
+    Set<String> hSet = new HashSet<>();
 
     public void addPhoto(Photo photo) {
         this.allphotos.add(photo);

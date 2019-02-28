@@ -41,7 +41,7 @@ public final class ScoreCalculator {
         return score;
     }
 
-    public static Long getScoreBetweenTwoSlides(SlideShow slideShow) {
+    public static Long getSlideShowScore(SlideShow slideShow) {
 
         Long counter = 0L;
         List<Slide> allSlide = slideShow.getSlides();

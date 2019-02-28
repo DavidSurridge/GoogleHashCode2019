@@ -28,7 +28,7 @@ public final class StrategyOne {
 
         for (Photo photo : photos) {
             if (photo.getOrientation().equalsIgnoreCase("H")) {
-                final Slide slide = Slide.builder().build();
+                final Slide slide = new Slide();
                 slide.addPhoto(photo);
                 slides.add(slide);
                 availableSlides.add(i);
