@@ -1,24 +1,25 @@
 package com.hashcode.model;
 
-
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
+@Builder
 public final class Slide {
 
-    ArrayList<Photo> allphotos = new ArrayList<Photo>();
 
-    public Slide(Photo photo) {
-        allphotos.add(photo);
+    List allphotos = new ArrayList<Photo>();
+
+    public void addPhoto(Photo photo) {
+        this.allphotos.add(photo);
     }
 
-    public Slide(Photo photo1, Photo photo2) {
-        allphotos.add(photo1);
-        allphotos.add(photo2);
+    public void addPhoto(Photo photo1, Photo photo2) {
+        this.allphotos.add(photo1);
+        this.allphotos.add(photo2);
     }
-
-
 }

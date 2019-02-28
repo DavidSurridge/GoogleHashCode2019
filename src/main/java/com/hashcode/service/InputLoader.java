@@ -1,6 +1,7 @@
 package com.hashcode.service;
 
 import com.hashcode.model.Photo;
+import lombok.Getter;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -12,6 +13,9 @@ import java.util.List;
 public class InputLoader {
 
     private static final String INPUT_FILENAME = "a_example.txt";
+
+    @Getter
+    private List<Photo> photos = new LinkedList<>();
 
     public InputLoader() {
         final File file = loadFileFromResources();
@@ -33,7 +37,6 @@ public class InputLoader {
         try {
             final List<String> content = FileUtils.readLines(file);
             content.remove(0);
-            final List<Photo> listOfPhotos = new LinkedList<>();
             long i = 0;
 
             for (String line : content) {
@@ -50,11 +53,9 @@ public class InputLoader {
                         .tags(strings)
                         .build();
 
-                listOfPhotos.add(photo);
+                photos.add(photo);
                 i++;
             }
-
-            System.out.println(listOfPhotos);
 
         } catch (IOException e) {
             throw new RuntimeException("The file cannot be read due to invalid characters.");
