@@ -1,6 +1,6 @@
-package PlayCode.service;
+package com.hashcode.service;
 
-import PlayCode.model.Payload;
+import com.hashcode.model.Payload;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -39,6 +39,6 @@ public class InputLoader {
     }
 
     public Payload getPayload() {
-        return new Payload();
+        return Payload.builder().attribute1("Testing Project Lombok").build();
     }
 }

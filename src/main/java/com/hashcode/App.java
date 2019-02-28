@@ -1,8 +1,8 @@
-package PlayCode;
+package com.hashcode;
 
-import PlayCode.model.Payload;
-import PlayCode.service.InputLoader;
-import PlayCode.service.LogicExecutor;
+import com.hashcode.service.InputLoader;
+import com.hashcode.service.LogicExecutor;
+import com.hashcode.model.Payload;
 
 public class App {
 
