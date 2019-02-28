@@ -1,15 +1,18 @@
 package com.hashcode.service;
 
 import com.hashcode.model.Payload;
+import com.hashcode.model.Photo;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class InputLoader {
 
-    private static final String INPUT_FILENAME = "ExampleInput";
+    private static final String INPUT_FILENAME = "a_example.txt";
+    private Payload payload;
 
     public InputLoader() {
         final File file = loadFileFromResources();
@@ -30,9 +33,28 @@ public class InputLoader {
     private void parseFileContentToPayload(File file) {
         try {
             final List<String> content = FileUtils.readLines(file);
-            content.forEach(System.out::println);
-            //int[] Types = Arrays.asList(myData).stream().mapToInt(Integer::parseInt).toArray();
-            //ArrayList<String> identifiers = new ArrayList<String>(List.of(line.split(" ")));
+            final List<Photo> listOfPhotos = new LinkedList<>();
+
+            content.remove(0);
+
+            content.forEach(line -> {
+                List<String> lineValues = Arrays.asList(line.split(" "));
+                String orientation = lineValues.get(0);
+                Integer numberOfTags = Integer.parseInt(lineValues.get(1));
+
+                List<String> strings = lineValues.subList(2, lineValues.size());
+
+                Photo photo = Photo.builder()
+                        .orientation(orientation)
+                        .numberOfTags(numberOfTags)
+                        .tags(strings)
+                        .build();
+
+                listOfPhotos.add(photo);
+            });
+
+            System.out.println(listOfPhotos);
+
         } catch (IOException e) {
             throw new RuntimeException("The file cannot be read due to invalid characters.");
         }
