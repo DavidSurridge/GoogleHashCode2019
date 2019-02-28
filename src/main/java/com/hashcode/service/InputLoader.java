@@ -1,18 +1,17 @@
 package com.hashcode.service;
 
-import com.hashcode.model.Payload;
 import com.hashcode.model.Photo;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class InputLoader {
 
     private static final String INPUT_FILENAME = "a_example.txt";
-    private Payload payload;
 
     public InputLoader() {
         final File file = loadFileFromResources();
@@ -60,7 +59,4 @@ public class InputLoader {
         }
     }
 
-    public Payload getPayload() {
-        return Payload.builder().attribute1("Testing Project Lombok").build();
-    }
 }
