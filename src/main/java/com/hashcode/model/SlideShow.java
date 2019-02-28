@@ -1,21 +1,18 @@
 package com.hashcode.model;
 
-
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public final class SlideShow {
 
-    List<Slide> slides = new ArrayList<Slide>();
+    List slides = new ArrayList<Slide>();
 
-    public SlideShow() {
-
-    }
-
-    public SlideShow(Slide slide) {
+    public void addSlide(Slide slide) {
         this.slides.add(slide);
     }
 
