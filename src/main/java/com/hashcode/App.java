@@ -15,7 +15,7 @@ public class App {
         final ExampleSolution exampleSolution = new ExampleSolution();
         final SlideShow slideShow = strategyOne.runStrategy(inputLoader.getPhotos());
         final Long slideShowScore = ScoreCalculator.getSlideShowScore(slideShow);
-        ExportSolution.export(slideShow , "B");
+        ExportSolution.export(slideShow , "D");
     //    System.out.println(slideShowScore);
     }
 }
