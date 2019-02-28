@@ -29,19 +29,17 @@ public class Score {
         int B = 0;
 
         for (String string : tagsSlide1) {
-
-
             if (tagsSlide2.contains(string)) {
                 B++;
             } else {
                 A++;
             }
-
         }
         int size = tagsSlide2.size();
-
         int C = size - B;
         Long score = new Long(Math.min(A, Math.min(B, C)));
         return score;
     }
+
+    
 }
