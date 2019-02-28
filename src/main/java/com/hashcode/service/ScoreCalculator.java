@@ -21,7 +21,7 @@ public final class ScoreCalculator {
         }
 
         List<Photo> secondPhotos = slide2.getAllphotos();
-        for (Photo photo : photos) {
+        for (Photo photo : secondPhotos) {
             tagsSlide2.addAll(photo.getTags());
         }
 
@@ -46,7 +46,7 @@ public final class ScoreCalculator {
         Long counter = 0L;
         List<Slide> allSlide = slideShow.getSlides();
         for (int i = 0; i < allSlide.size() - 1; i++) {
-            counter += getScoreBetweenTwoSlides(allSlide.get(i), allSlide.get(i + 1));
+            counter = counter + getScoreBetweenTwoSlides(allSlide.get(i), allSlide.get(i + 1));
         }
         return counter;
     }
