@@ -14,6 +14,8 @@ import java.util.Set;
 
 public final class StrategyOne {
 
+    private static final int MAXIMUM_VARIANCE = 10;
+
     private List<Slide> slides = new ArrayList<>();
     private SlideShow slideShow = new SlideShow();
     private Integer lastSlideIndex = 0;
@@ -36,20 +38,19 @@ public final class StrategyOne {
             }
         }
 
-        scores = new Long[slides.size()][slides.size()];
-        calculateScorePairs();
-        slideShow.addSlide(slides.get(bestScorePosition.i));
-        slideShow.addSlide(slides.get(bestScorePosition.j));
-        availableSlides.remove(bestScorePosition.i);
-        availableSlides.remove(bestScorePosition.j);
-        lastSlideIndex = bestScorePosition.j;
+//        scores = new Long[slides.size()][slides.size()];
+//        calculateScorePairs();
+        lastSlideIndex = getRandomElement(availableSlides);
+        slideShow.addSlide(slides.get(lastSlideIndex));
+        availableSlides.remove(lastSlideIndex);
 
         while (availableSlides.size() > 0) {
             long localMaximumScore = 0;
             int localMaximumIndex = -1;
 
-            for (Integer index : availableSlides) {
-                final Long score = scores[lastSlideIndex][index];
+            for (int k = 0; k < MAXIMUM_VARIANCE; k++) {
+                final Integer index = getRandomElement(availableSlides);
+                final Long score = ScoreCalculator.getScoreBetweenTwoSlides(slides.get(lastSlideIndex), slides.get(index));
                 if (score > localMaximumScore) {
                     localMaximumScore = score;
                     localMaximumIndex = index;
@@ -58,6 +59,19 @@ public final class StrategyOne {
                 }
             }
 
+//            for (Integer index : availableSlides) {
+//                final Long score = scores[lastSlideIndex][index];
+//                if (score > localMaximumScore) {
+//                    localMaximumScore = score;
+//                    localMaximumIndex = index;
+//                } else if (localMaximumIndex == -1) {
+//                    localMaximumIndex = index;
+//                }
+//            }
+
+            if (availableSlides.size() % 1000 == 0) {
+                System.out.println(localMaximumIndex + "      " + localMaximumScore + "   " + availableSlides.size());
+            }
             slideShow.addSlide(slides.get(localMaximumIndex));
             availableSlides.remove(localMaximumIndex);
         }
@@ -65,23 +79,38 @@ public final class StrategyOne {
         return slideShow;
     }
 
-    private void calculateScorePairs() {
-        for (int i = 0; i < slides.size(); i++) {
-            final Slide firstSlide = slides.get(i);
-            for (int j = i + 1; j < slides.size(); j++) {
-                final Slide secondSlide = slides.get(j);
-                final Long score = ScoreCalculator.getScoreBetweenTwoSlides(firstSlide, secondSlide);
-                scores[i][j] = score;
-                scores[j][i] = score;
+    private Integer getRandomElement(Set<Integer> availableSlides) {
+        double setIndex = Math.floor(Math.random() * availableSlides.size());
+        int parsedIndex = (int) setIndex;
+        Integer counter = 0;
 
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestScorePosition.setI(i);
-                    bestScorePosition.setJ(j);
-                }
+        for (Integer slide : availableSlides) {
+            if (parsedIndex == counter) {
+                return slide;
             }
+            counter++;
         }
+
+        return 0;
     }
+
+//    private void calculateScorePairs() {
+//        for (int i = 0; i < slides.size(); i++) {
+//            final Slide firstSlide = slides.get(i);
+//            for (int j = i + 1; j < slides.size(); j++) {
+//                final Slide secondSlide = slides.get(j);
+//                final Long score = ScoreCalculator.getScoreBetweenTwoSlides(firstSlide, secondSlide);
+//                scores[i][j] = score;
+//                scores[j][i] = score;
+//
+//                if (score > bestScore) {
+//                    bestScore = score;
+//                    bestScorePosition.setI(i);
+//                    bestScorePosition.setJ(j);
+//                }
+//            }
+//        }
+//    }
 
     @Data
     @NoArgsConstructor

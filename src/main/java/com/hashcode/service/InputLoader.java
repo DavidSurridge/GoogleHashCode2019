@@ -12,7 +12,11 @@ import java.util.List;
 
 public class InputLoader {
 
-    private static final String INPUT_FILENAME = "a_example.txt";
+//    private static final String INPUT_FILENAME = "c_memorable_moments.txt";
+    private static final String INPUT_FILENAME = "b_lovely_landscapes.txt";
+//    private static final String INPUT_FILENAME = "d_pet_pictures.txt";
+//    private static final String INPUT_FILENAME = "e_shiny_selfies.txt";
+//    private static final String INPUT_FILENAME = "a_example.txt";
 
     @Getter
     private List<Photo> photos = new LinkedList<>();
