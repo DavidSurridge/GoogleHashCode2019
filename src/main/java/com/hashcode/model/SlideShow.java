@@ -1,8 +1,12 @@
 package com.hashcode.model;
 
+
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public final class SlideShow {
 
     List<Slide> slides = new ArrayList<Slide>();

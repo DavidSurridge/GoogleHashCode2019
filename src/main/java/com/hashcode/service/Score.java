@@ -2,6 +2,7 @@ package com.hashcode.service;
 
 import com.hashcode.model.Photo;
 import com.hashcode.model.Slide;
+import com.hashcode.model.SlideShow;
 
 import java.util.HashSet;
 import java.util.List;
@@ -41,5 +42,13 @@ public class Score {
         return score;
     }
 
-    
+    public static Long getScore(SlideShow slideShow) {
+
+        Long counter = 0L;
+        List<Slide> allSlide = slideShow.getSlides();
+        for (int i = 0; i < allSlide.size() - 1; i++) {
+            counter += Score.getScore(allSlide.get(i), allSlide.get(i + 1));
+        }
+        return counter;
+    }
 }

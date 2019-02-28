@@ -1,14 +1,14 @@
 package com.hashcode.model;
 
 import lombok.Builder;
-import lombok.Data;
+
 
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+import lombok.Data;
 @Data
 @Builder
 public final class Slide {
