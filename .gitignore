@@ -1,0 +1,22 @@
+### Eclipse ###
+.project
+.classpath
+.settings
+eclipse
+debug.log
+*.log
+*.vscode
+### Ignore ctwebshared root folder created by Eclipse ###
+/ctwebshared
+
+### Intellij IDEA ##
+.idea/
+*.ipr
+*.iws
+*.ipl
+*.iml
+*.ipr
+out/
+
+# Ignore Mac DS_Store files
+.DS_Store
